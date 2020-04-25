@@ -45,6 +45,8 @@ function InputCard(props) {
 
   useEffect(() => {
     // TODO: Get all past entries
+    axios.get('/entries')
+    .then(res => setPastEntries(res.data));
   });
 
   const addEntry = () => {
@@ -55,6 +57,7 @@ function InputCard(props) {
     setEntry(entry);
     setPastEntries([entry, ...pastEntries]);
     // TODO: Save this visualization somewhere
+    axios.post('/save', entry);
   };
 
   const displayEntry = () => {
